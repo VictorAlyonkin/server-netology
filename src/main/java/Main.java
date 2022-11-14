@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         System.out.println("server started");
         int port = 8086;
 
@@ -20,8 +20,16 @@ public class Main {
                      )) {
                     System.out.println("New connection accepted");
 
+                    out.println(String.format("Write your name"));
                     final String name = in.readLine();
-                    out.println(String.format("Hi %s, your port is %d", name, clientSocket.getPort()));
+
+                    out.println(String.format("Are you child?"));
+                    String isChild = in.readLine();
+                    if ("yes".equalsIgnoreCase(isChild))
+                        out.println(String.format("Welcome to the kids area, %s! Let's play!", name));
+                    else if ("no".equalsIgnoreCase(isChild))
+                        out.println(String.format("Welcome to the adult zone, %s! Have a good rest, " +
+                                "or a good working day!", name));
                 }
             }
         }
